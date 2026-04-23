@@ -16,7 +16,11 @@ namespace TeamProjectAPI.Controllers
             _context = context;
         }
 
-        // GET: api/Movies?id=0  (null or 0 returns first 5)
+        // GET: api/Movies?id=0
+        // READ operation - accepts an optional id from the query string.
+        // If no id is provided or id is 0, it returns the first 5 movies from the database.
+        // If a valid id is provided, it looks up that specific movie.
+        // Returns 404 Not Found if the movie does not exist.
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Movie>>> Get([FromQuery] int? id)
         {
@@ -29,6 +33,9 @@ namespace TeamProjectAPI.Controllers
         }
 
         // POST: api/Movies
+        // CREATE operation - accepts a Movie object in the request body as JSON.
+        // Adds the new movie to the database and saves the changes.
+        // Returns 201 Created with the newly created movie and its location.
         [HttpPost]
         public async Task<ActionResult<Movie>> Create(Movie movie)
         {
@@ -38,6 +45,10 @@ namespace TeamProjectAPI.Controllers
         }
 
         // PUT: api/Movies/5
+        // UPDATE operation - accepts the id in the URL and the updated Movie object in the request body.
+        // First checks that the id in the URL matches the id in the body to prevent mismatch errors.
+        // Finds the existing record in the database and updates its values.
+        // Returns 404 Not Found if no matching record exists, or 204 No Content on success.
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, Movie movie)
         {
@@ -50,6 +61,10 @@ namespace TeamProjectAPI.Controllers
         }
 
         // DELETE: api/Movies/5
+        // DELETE operation - accepts the id in the URL.
+        // Looks up the movie in the database by id.
+        // Returns 404 Not Found if the record does not exist.
+        // Removes the record from the database and returns 204 No Content on success.
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
