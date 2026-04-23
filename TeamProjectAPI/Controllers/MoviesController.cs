@@ -42,13 +42,10 @@ namespace TeamProjectAPI.Controllers
         public async Task<IActionResult> Update(int id, Movie movie)
         {
             if (id != movie.Id) return BadRequest();
-            _context.Entry(movie).State = EntityState.Modified;
-            try { await _context.SaveChangesAsync(); }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!_context.Movies.Any(e => e.Id == id)) return NotFound();
-                throw;
-            }
+            var existing = await _context.Movies.FindAsync(id);
+            if (existing == null) return NotFound();
+            _context.Entry(existing).CurrentValues.SetValues(movie);
+            await _context.SaveChangesAsync();
             return NoContent();
         }
 

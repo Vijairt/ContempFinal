@@ -42,13 +42,10 @@ namespace TeamProjectAPI.Controllers
         public async Task<IActionResult> Update(int id, TeamMember teamMember)
         {
             if (id != teamMember.Id) return BadRequest();
-            _context.Entry(teamMember).State = EntityState.Modified;
-            try { await _context.SaveChangesAsync(); }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!_context.TeamMembers.Any(e => e.Id == id)) return NotFound();
-                throw;
-            }
+            var existing = await _context.TeamMembers.FindAsync(id);
+            if (existing == null) return NotFound();
+            _context.Entry(existing).CurrentValues.SetValues(teamMember);
+            await _context.SaveChangesAsync();
             return NoContent();
         }
 

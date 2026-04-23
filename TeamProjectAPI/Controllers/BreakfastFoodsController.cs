@@ -42,13 +42,10 @@ namespace TeamProjectAPI.Controllers
         public async Task<IActionResult> Update(int id, BreakfastFood breakfastFood)
         {
             if (id != breakfastFood.Id) return BadRequest();
-            _context.Entry(breakfastFood).State = EntityState.Modified;
-            try { await _context.SaveChangesAsync(); }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!_context.BreakfastFoods.Any(e => e.Id == id)) return NotFound();
-                throw;
-            }
+            var existing = await _context.BreakfastFoods.FindAsync(id);
+            if (existing == null) return NotFound();
+            _context.Entry(existing).CurrentValues.SetValues(breakfastFood);
+            await _context.SaveChangesAsync();
             return NoContent();
         }
 
