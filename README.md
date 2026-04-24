@@ -8,7 +8,7 @@
 | Name | Email | Program | Year |
 |------|-------|---------|------|
 | Rohit Vijai | vijairt@mail.uc.edu | Information Technology | Senior |
-| Jack Baker | jack.baker@student.edu | Information Technology | Senior |
+| Jack Baker | baker5j5@mail.uc.edu | Information Technology | Senior |
 
 ---
 
