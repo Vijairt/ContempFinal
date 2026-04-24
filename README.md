@@ -7,8 +7,8 @@
 ## Team Members
 | Name | Email | Program | Year |
 |------|-------|---------|------|
-| Rohit Vijai | vijairt@mail.uc.edu | Computer Information Technology | Junior |
-| Jack Baker | jack.baker@student.edu | Computer Information Technology | Senior |
+| Rohit Vijai | vijairt@mail.uc.edu | Information Technology | Senior |
+| Jack Baker | jack.baker@student.edu | Information Technology | Senior |
 
 ---
 
