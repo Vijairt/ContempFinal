@@ -22,6 +22,7 @@ namespace TeamProjectAPI.Controllers
         // If a valid id is provided, it looks up that specific hobby.
         // Returns 404 Not Found if the hobby does not exist.
         [HttpGet]
+        [Produces("application/json")]
         public async Task<ActionResult<IEnumerable<Hobby>>> Get([FromQuery] int? id)
         {
             if (id == null || id == 0)
